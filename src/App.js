@@ -1,23 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { CgMenuGridR } from "react-icons/cg";
+import { TbPlugConnectedX } from "react-icons/tb";
+import { MdAttachMoney } from "react-icons/md";
+import { MdOutlineSecurity } from "react-icons/md";
+import { RiAdminFill } from "react-icons/ri";
+import { IoDocumentTextOutline } from "react-icons/io5";
+
+// Components
+import Sidebar, { SidebarItem } from "./components/Sidebar";
+
+// Pages
+import Applications from "./pages/Applications";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex">
+      {/* Sidebar */}
+      <Sidebar>
+        <SidebarItem
+          icon={<CgMenuGridR className="text-2xl" />}
+          text="Application"
+          active
+        />
+
+        {/* Divider */}
+        <SidebarItem
+          icon={<TbPlugConnectedX className="text-2xl" />}
+          text="Connections"
+        />
+        <SidebarItem
+          icon={<MdAttachMoney className="text-2xl" />}
+          text="Cost"
+        />
+        <SidebarItem
+          icon={<MdOutlineSecurity className="text-2xl" />}
+          text="Security"
+        />
+
+        {/* Divider */}
+        <SidebarItem icon={<RiAdminFill className="text-2xl" />} text="Admin" />
+        <SidebarItem
+          icon={<IoDocumentTextOutline className="text-2xl" />}
+          text="Docs"
+        />
+      </Sidebar>
+
+      {/* Main Container */}
+      <Applications />
     </div>
   );
 }
