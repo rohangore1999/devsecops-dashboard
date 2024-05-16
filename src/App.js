@@ -13,7 +13,7 @@ import Applications from "./pages/Applications";
 
 function App() {
   return (
-    <div className="flex">
+    <div className="flex bg-[#f2f2f2]">
       {/* Sidebar */}
       <Sidebar>
         <SidebarItem

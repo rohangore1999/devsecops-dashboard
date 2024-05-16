@@ -2,6 +2,7 @@ import React from "react";
 
 // Components
 import Header from "../../components/Header";
+import Dashboard from "../../components/Dashboard";
 
 const Applications = () => {
   return (
@@ -9,8 +10,9 @@ const Applications = () => {
       <div className="flex flex-col">
         {/* Header - App Name & Username */}
         <Header />
+
         {/* Dashboard */}
-        Dashboard
+        <Dashboard />
       </div>
     </main>
   );
