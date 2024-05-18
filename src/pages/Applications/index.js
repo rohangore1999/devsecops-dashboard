@@ -6,7 +6,7 @@ import Dashboard from "../../components/Dashboard";
 
 const Applications = () => {
   return (
-    <main className="w-full py-5 px-10">
+    <main className="w-full min-h-[100vh] h-fit py-5 px-10">
       <div className="flex flex-col">
         {/* Header - App Name & Username */}
         <Header />

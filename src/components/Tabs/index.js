@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 export function Tabs({ children }) {
-  console.log({ children });
-
   // To find the active tab
   const findActiveTab = (tabs) => tabs.findIndex((tab) => tab.props.active);
 
