@@ -102,10 +102,10 @@ const Environment = () => {
       getItemFromLocalStorage("values"),
     ];
 
-    const localKeys = keys.split(",");
-    const localValues = values.split(",");
+    const localKeys = keys?.split(",");
+    const localValues = values?.split(",");
 
-    getParsedEnvFormat(localKeys, localValues);
+    localKeys && getParsedEnvFormat(localKeys, localValues);
   }, []);
 
   return (
