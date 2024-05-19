@@ -5,3 +5,8 @@ export const convertTimestampToRelativeTime = (timestamp) => {
 
   return formatDistanceToNow(date, { addSuffix: true });
 };
+
+export const setItemsInLocalStorage = (obj) =>
+  Object.keys(obj).forEach((elem) => localStorage.setItem(elem, obj[elem]));
+
+export const getItemFromLocalStorage = (key) => localStorage.getItem(key);

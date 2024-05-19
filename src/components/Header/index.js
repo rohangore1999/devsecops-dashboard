@@ -5,7 +5,6 @@ import Dropdown from "../Dropdown";
 import UserProfile from "../UserProfile";
 
 const Header = ({ applications }) => {
-  console.log(applications);
   return (
     <div className="flex justify-between items-center border-b pb-2">
       <div className="flex flex-col">

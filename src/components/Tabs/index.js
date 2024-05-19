@@ -44,7 +44,6 @@ export function Tab({
   secondary,
   alert = false,
 }) {
-  console.log({ alert });
   return (
     <>
       <div

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { GoDownload } from "react-icons/go";
 import { MdOutlineDelete } from "react-icons/md";
@@ -7,6 +7,12 @@ import { MdOutlineDelete } from "react-icons/md";
 import Paper from "../../components/Paper";
 import Drawer from "../../components/Drawer";
 import UploadFile from "../../components/UploadFile";
+
+// Utils
+import {
+  getItemFromLocalStorage,
+  setItemsInLocalStorage,
+} from "../../utils/common";
 
 const Environment = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -45,6 +51,13 @@ const Environment = () => {
     return envVars;
   };
 
+  const storeToLocalStorage = (envVariables) => {
+    const keys = envVariables.map((variable) => variable.key);
+    const values = envVariables.map((variable) => variable.value);
+
+    setItemsInLocalStorage({ keys, values });
+  };
+
   const readEnvFile = (file) => {
     const reader = new FileReader();
 
@@ -53,6 +66,8 @@ const Environment = () => {
       const parsedEnv = parseEnvFile(text);
 
       setEnvVariables(parsedEnv);
+
+      storeToLocalStorage(parsedEnv);
     };
 
     reader.readAsText(file);
@@ -69,7 +84,29 @@ const Environment = () => {
     );
 
     setEnvVariables(updatedEnvVariables);
+
+    storeToLocalStorage(updatedEnvVariables);
   };
+
+  const getParsedEnvFormat = (keys, values) => {
+    const envVars = keys.map((key, idx) => {
+      return { key, value: values[idx] };
+    });
+
+    setEnvVariables(envVars);
+  };
+
+  useEffect(() => {
+    const [keys, values] = [
+      getItemFromLocalStorage("keys"),
+      getItemFromLocalStorage("values"),
+    ];
+
+    const localKeys = keys.split(",");
+    const localValues = values.split(",");
+
+    getParsedEnvFormat(localKeys, localValues);
+  }, []);
 
   return (
     <>
