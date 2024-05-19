@@ -55,6 +55,11 @@ const Environment = () => {
     const keys = envVariables.map((variable) => variable.key);
     const values = envVariables.map((variable) => variable.value);
 
+    if (!keys.length) {
+      localStorage.clear();
+
+      return;
+    }
     setItemsInLocalStorage({ keys, values });
   };
 
@@ -115,7 +120,7 @@ const Environment = () => {
           <p>Environment variables</p>
 
           <div className="flex gap-2">
-            <FiPlus onClick={toggleDrawer} />
+            <FiPlus className="cursor-pointer" onClick={toggleDrawer} />
 
             <GoDownload />
           </div>
