@@ -13,42 +13,53 @@ import Applications from "./pages/Applications";
 
 // Providers
 import { Provider } from "./context/Context";
+import Divider from "./components/Divider";
 
 function App() {
   return (
     <Provider>
-      <div className="flex bg-[#f2f2f2]">
+      <div className="flex bg-[#f2f2f2] ">
         {/* Sidebar */}
         <Sidebar>
-          <SidebarItem
-            icon={<CgMenuGridR className="text-2xl" />}
-            text="Application"
-            active
-          />
+          <div className="flex flex-col h-full justify-between">
+            <div className="space-y-5">
+              <SidebarItem
+                icon={<CgMenuGridR className="text-2xl" />}
+                text="Application"
+                active
+              />
 
-          {/* Divider */}
-          <SidebarItem
-            icon={<TbPlugConnectedX className="text-2xl" />}
-            text="Connections"
-          />
-          <SidebarItem
-            icon={<MdAttachMoney className="text-2xl" />}
-            text="Cost"
-          />
-          <SidebarItem
-            icon={<MdOutlineSecurity className="text-2xl" />}
-            text="Security"
-          />
+              <Divider />
 
-          {/* Divider */}
-          <SidebarItem
-            icon={<RiAdminFill className="text-2xl" />}
-            text="Admin"
-          />
-          <SidebarItem
-            icon={<IoDocumentTextOutline className="text-2xl" />}
-            text="Docs"
-          />
+              <SidebarItem
+                icon={<TbPlugConnectedX className="text-2xl" />}
+                text="Connections"
+              />
+              <SidebarItem
+                icon={<MdAttachMoney className="text-2xl" />}
+                text="Cost"
+              />
+              <SidebarItem
+                icon={<MdOutlineSecurity className="text-2xl" />}
+                text="Security"
+                beta
+              />
+
+              <Divider />
+            </div>
+
+            <div className="space-y-5 pb-5">
+              <SidebarItem
+                icon={<RiAdminFill className="text-2xl" />}
+                text="Admin"
+              />
+
+              <SidebarItem
+                icon={<IoDocumentTextOutline className="text-2xl" />}
+                text="Docs"
+              />
+            </div>
+          </div>
         </Sidebar>
 
         {/* Main Container */}

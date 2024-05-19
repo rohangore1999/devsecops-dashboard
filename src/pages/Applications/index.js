@@ -37,7 +37,7 @@ const Applications = () => {
   }
 
   return (
-    <main className="w-full min-h-[100vh] h-fit py-5 px-10">
+    <main className="w-full overflow-y-scroll h-[100vh] py-5 px-10">
       <div className="flex flex-col">
         {/* Header - App Name & Username */}
         <Header applications={applications} />

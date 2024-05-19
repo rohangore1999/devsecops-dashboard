@@ -15,6 +15,7 @@ import Environment from "../../pages/Dashboard/environment";
 
 // Context
 import { Context } from "../../context/Context";
+import EmptyView from "../EmptyView";
 
 const Dashboard = () => {
   const { state } = useContext(Context);
@@ -38,13 +39,14 @@ const Dashboard = () => {
       menuItem: "Alert",
       key: "alert",
       icon: <MdOutlineWarningAmber className="text-xl" />,
-      render: <div>content of tab 3</div>,
+      render: <EmptyView />,
+      alert,
     },
     {
       menuItem: "Event History",
       key: "event-history",
       icon: <MdHistory className="text-xl" />,
-      render: <div>content of tab 4</div>,
+      render: <EmptyView />,
     },
   ];
 
@@ -64,7 +66,11 @@ const Dashboard = () => {
       {/* Menu Items */}
       <Tabs>
         {panes.map((pane) => (
-          <Tab component={pane.render} active={pane.isActive}>
+          <Tab
+            component={pane.render}
+            active={pane.isActive}
+            alert={pane.alert}
+          >
             <div className="flex items-center space-x-2">
               {pane.icon}
               <p>{pane.menuItem}</p>

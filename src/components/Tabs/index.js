@@ -16,6 +16,7 @@ export function Tabs({ children, secondary = false }) {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             secondary={secondary}
+            {...tab.props}
           >
             {tab.props.children}
           </Tab>
@@ -41,7 +42,9 @@ export function Tab({
   currentTab,
   setActiveTab,
   secondary,
+  alert = false,
 }) {
+  console.log({ alert });
   return (
     <>
       <div
@@ -63,6 +66,13 @@ export function Tab({
         )}
 
         {children}
+
+        {alert && (
+          <div
+            className="absolute -right-2 w-2 h-2 rounded bg-red-500 
+            top-2"
+          />
+        )}
       </div>
     </>
   );

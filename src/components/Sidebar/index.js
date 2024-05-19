@@ -11,8 +11,8 @@ export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(true);
 
   return (
-    <aside className="h-auto">
-      <nav className="h-full flex flex-col bg-white border-r shadow-sm">
+    <aside className="h-[100vh] sticky ">
+      <nav className="h-full flex flex-col bg-white border-r shadow-sm ">
         <div className="p-4 flex justify-between items-center">
           {expanded ? (
             <img src={kFulllogo} className={`overflow-hidden  w-32`} alt="" />
@@ -26,23 +26,6 @@ export default function Sidebar({ children }) {
         </SidebarContext.Provider>
 
         <div className="border-t flex p-3">
-          {/* <img
-            src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
-            alt=""
-            className="w-10 h-10 rounded-md"
-          />
-          <div
-            className={`
-              flex justify-between items-center
-              overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
-          `}
-          >
-            <div className="leading-4">
-              <h4 className="font-semibold">John Doe</h4>
-              <span className="text-xs text-gray-600">johndoe@gmail.com</span>
-            </div>
-            <MoreVertical size={20} />
-          </div> */}
           <button
             onClick={() => setExpanded((curr) => !curr)}
             className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100"
@@ -55,7 +38,7 @@ export default function Sidebar({ children }) {
   );
 }
 
-export function SidebarItem({ icon, text, active, alert }) {
+export function SidebarItem({ icon, text, active, beta }) {
   const { expanded } = useContext(SidebarContext);
 
   return (
@@ -63,7 +46,7 @@ export function SidebarItem({ icon, text, active, alert }) {
       className={`
         relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
-        transition-colors group
+        transition-colors group 
         ${
           active
             ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
@@ -79,12 +62,15 @@ export function SidebarItem({ icon, text, active, alert }) {
       >
         {text}
       </span>
-      {alert && (
+
+      {beta && (
         <div
-          className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${
-            expanded ? "" : "top-2"
+          className={`border -ml-32 rounded-md border-purple-700 bg-purple-700 text-sm text-white py-1 px-3 ${
+            !expanded && "hidden"
           }`}
-        />
+        >
+          Beta
+        </div>
       )}
 
       {!expanded && (
