@@ -23,11 +23,9 @@ export const getEventHistory = async (applicationId) => {
   }
 };
 
-export const getMemoryUtilization = async (applicationId) => {
+export const getMemoryUtilization = async () => {
   try {
-    const response = await http.get(
-      `ybFVVH/memoryutilization?applicationId=${applicationId}`
-    );
+    const response = await http.get("ybFVVH/memoryutilization");
 
     return response;
   } catch (error) {
@@ -35,11 +33,9 @@ export const getMemoryUtilization = async (applicationId) => {
   }
 };
 
-export const getCpuUtilization = async (applicationId) => {
+export const getCpuUtilization = async () => {
   try {
-    const response = await http.get(
-      `Ymxfa2/cpuutilization?applicationId=${applicationId}`
-    );
+    const response = await http.get("Ymxfa2/cpuutilization");
 
     return response;
   } catch (error) {

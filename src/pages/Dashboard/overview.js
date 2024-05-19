@@ -8,6 +8,7 @@ import Table from "../../components/Table";
 import { Tab, Tabs } from "../../components/Tabs";
 import StatusLabel from "../../components/StatusLabel";
 import Charts from "../../components/Charts";
+import Title from "../../components/Title";
 
 // Consants
 import { headings } from "./constants";
@@ -27,42 +28,51 @@ import {
 
 // Helpers
 import { getChartOptions } from "./helpers";
+import Loader from "../../components/Loader";
 
 const Overview = () => {
+  const [loader, setLoader] = useState(true);
   const [eventHistoryData, setEventHistoryData] = useState([]);
   const [memoryUtilizationData, setMemoryUtilizationData] = useState([]);
   const [CpuUtilizationData, setCpuUtilizationData] = useState([]);
 
   const { state } = useContext(Context);
-  const { applications } = state;
+  const { application, applications } = state;
 
   useEffect(() => {
     (async () => {
+      setLoader(true);
+
       const [
         eventHistoryResponse,
         memoryUtilizationResponse,
         cpuUtilizationResponse,
       ] = await Promise.all([
-        getEventHistory(applications.id),
-        getMemoryUtilization(applications.id),
-        getCpuUtilization(applications.id),
+        getEventHistory(application.id),
+        getMemoryUtilization(application.id),
+        getCpuUtilization(),
       ]);
 
       setEventHistoryData(eventHistoryResponse);
       setMemoryUtilizationData(memoryUtilizationResponse);
       setCpuUtilizationData(cpuUtilizationResponse);
+
+      setLoader(false);
     })();
-  }, [applications]);
+  }, [application]);
 
   const memoryOptions = getChartOptions(
     memoryUtilizationData,
     "Memory Utilization",
-    "memoryUtilization"
+    "memoryUtilization",
+    applications
   );
+
   const cpuOptions = getChartOptions(
     CpuUtilizationData,
     "CPU Utilization",
-    "cpuUtilization"
+    "cpuUtilization",
+    applications
   );
 
   const systemMetricsPanes = [
@@ -79,11 +89,15 @@ const Overview = () => {
     },
   ];
 
+  if (loader) {
+    return <Loader />;
+  }
+
   return (
     <div className="space-y-5">
       <Paper>
         <div className="flex justify-between items-center">
-          <p className="text-gray-500 font-bold">Service Info</p>
+          <Title>Service Info</Title>
 
           <BsChevronUp />
         </div>
@@ -100,7 +114,7 @@ const Overview = () => {
 
           <div className="flex flex-col">
             <p className="text-gray-500 text-sm">Desired version</p>
-            <p>{applications.desiredVersion}</p>
+            <p>{application.desiredVersion}</p>
           </div>
         </div>
 
@@ -115,9 +129,9 @@ const Overview = () => {
 
       <div className="flex gap-4">
         <Paper width="w-1/2">
-          <div>System metrics</div>
+          <Title>System metrics</Title>
 
-          <Tabs>
+          <Tabs secondary>
             {systemMetricsPanes.map((pane) => (
               <Tab component={pane.render} active={pane.isActive}>
                 <p>{pane.menuItem}</p>
@@ -127,7 +141,7 @@ const Overview = () => {
         </Paper>
 
         <Paper width="w-1/2">
-          <div>Event History</div>
+          <Title>Event History</Title>
 
           <Table headings={headings}>
             <tbody>

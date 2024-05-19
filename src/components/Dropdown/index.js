@@ -17,7 +17,7 @@ const Dropdown = ({ options }) => {
   const handleOptionChange = (id) => {
     const selectedOption = options.find((option) => option.id === id);
 
-    dispatch({ type: ACTION_TYPES.APPLICATIONS, payload: selectedOption });
+    dispatch({ type: ACTION_TYPES.APPLICATION, payload: selectedOption });
 
     setSelected(selectedOption);
     setIsOpen(false);
@@ -36,7 +36,7 @@ const Dropdown = ({ options }) => {
       </div>
 
       {isOpen && (
-        <ul className="list-none absolute top-20 bg-gray-50 w-40 z-1 shadow-lg">
+        <ul className="list-none absolute top-20 bg-gray-50 w-40 z-1 shadow-lg z-50">
           {options.map((option) => (
             <li
               className={`py-3 px-4 cursor-pointer hover:bg-gray-200 hover:text-gray-400 ${

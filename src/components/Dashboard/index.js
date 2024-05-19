@@ -18,7 +18,7 @@ import { Context } from "../../context/Context";
 
 const Dashboard = () => {
   const { state } = useContext(Context);
-  const { applications } = state;
+  const { application } = state;
 
   const panes = [
     {
@@ -48,16 +48,14 @@ const Dashboard = () => {
     },
   ];
 
-  console.log({ applications });
-
   return (
     <div className="py-5">
       {/* Title and Status */}
       <div className="flex justify-between">
-        <p className="font-bold text-2xl">{applications.name}</p>
+        <p className="font-bold text-2xl">{application.name}</p>
 
         <div className="flex items-center space-x-4">
-          <StatusLabel status={applications.status} filled />
+          <StatusLabel status={application.status} filled />
 
           <CiMenuKebab className="cursor-pointer" />
         </div>

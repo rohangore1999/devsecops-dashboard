@@ -27,7 +27,8 @@ const Applications = () => {
       setApplications(data);
       setLoader(false);
 
-      dispatch({ type: ACTION_TYPES.APPLICATIONS, payload: data[0] });
+      dispatch({ type: ACTION_TYPES.APPLICATION, payload: data[0] });
+      dispatch({ type: ACTION_TYPES.APPLICATIONS, payload: data });
     })();
   }, []);
 
