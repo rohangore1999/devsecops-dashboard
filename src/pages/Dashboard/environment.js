@@ -21,7 +21,6 @@ const Environment = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 
-    console.log({ file });
     readEnvFile(file);
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // Components
 import Header from "../../components/Header";
@@ -8,9 +8,17 @@ import Loader from "../../components/Loader";
 // Services
 import { getAllApplications } from "../../services/applications";
 
+// Context
+import { Context } from "../../context/Context";
+
+// Constants
+import { ACTION_TYPES } from "../../reducers/constants";
+
 const Applications = () => {
   const [applications, setApplications] = useState(null);
   const [loader, setLoader] = useState(true);
+
+  const { dispatch } = useContext(Context);
 
   useEffect(() => {
     (async () => {
@@ -18,14 +26,14 @@ const Applications = () => {
 
       setApplications(data);
       setLoader(false);
+
+      dispatch({ type: ACTION_TYPES.APPLICATIONS, payload: data[0] });
     })();
   }, []);
 
   if (loader) {
     return <Loader />;
   }
-
-  console.log({ loader });
 
   return (
     <main className="w-full min-h-[100vh] h-fit py-5 px-10">

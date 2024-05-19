@@ -1,6 +1,6 @@
 import React from "react";
 
-const Table = ({ headings, body }) => {
+const Table = ({ headings, children }) => {
   return (
     <table className="text-left w-full">
       <thead>
@@ -16,20 +16,7 @@ const Table = ({ headings, body }) => {
         </tr>
       </thead>
 
-      <tbody>
-        {body.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <td
-                key={cellIndex}
-                className="py-4 px-6 border-b border-gray-200"
-              >
-                {cell}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
+      {children}
     </table>
   );
 };

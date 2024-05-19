@@ -3,9 +3,16 @@ import { GoDotFill } from "react-icons/go";
 
 const StatusLabel = ({ status }) => {
   const colorClasses = {
+    // Success
+    successful: "text-green-500 border-green-400",
     deployed: "text-green-500 border-green-400",
-    pending: "text-yellow-500 border-yellow-400",
+
+    // Warning
+    in_progress: "text-yellow-500 border-yellow-400",
+
+    // Error
     failed: "text-red-500 border-red-400",
+    uninstalled: "text-red-500 border-red-400",
   };
 
   const classes = colorClasses[status] || "text-gray-500 border-gray-400";
@@ -14,8 +21,9 @@ const StatusLabel = ({ status }) => {
     <div className={`border p-2 py-1 rounded-md ${classes}`}>
       <div className="flex items-center space-x-1">
         <GoDotFill className={`${classes.split(" ")[0]}`} />
+
         <p className={`font-normal capitalize ${classes.split(" ")[0]}`}>
-          {status}
+          {status.split("_").join(" ")}
         </p>
       </div>
     </div>

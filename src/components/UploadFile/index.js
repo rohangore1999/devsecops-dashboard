@@ -60,14 +60,6 @@ const UploadFile = ({
     }
   };
 
-  const handleUploadClick = () => {
-    // Handle file upload logic here
-    if (selectedFile) {
-      console.log("Uploading:", selectedFile);
-      // Add your upload logic here
-    }
-  };
-
   return (
     <div className="flex flex-col items-center">
       {selectedFile ? (

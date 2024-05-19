@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { MdMonitor } from "react-icons/md";
 import { AiOutlineTool } from "react-icons/ai";
@@ -13,7 +13,13 @@ import { Tab, Tabs } from "../Tabs";
 import Overview from "../../pages/Dashboard/overview";
 import Environment from "../../pages/Dashboard/environment";
 
+// Context
+import { Context } from "../../context/Context";
+
 const Dashboard = () => {
+  const { state } = useContext(Context);
+  const { applications } = state;
+
   const panes = [
     {
       menuItem: "Overview",
@@ -42,14 +48,16 @@ const Dashboard = () => {
     },
   ];
 
+  console.log({ applications });
+
   return (
     <div className="py-5">
       {/* Title and Status */}
       <div className="flex justify-between">
-        <p className="font-bold text-2xl">tic-tac-toe</p>
+        <p className="font-bold text-2xl">{applications.name}</p>
 
         <div className="flex items-center space-x-4">
-          <StatusLabel status="deployed" filled />
+          <StatusLabel status={applications.status} filled />
 
           <CiMenuKebab className="cursor-pointer" />
         </div>
